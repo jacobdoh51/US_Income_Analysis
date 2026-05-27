@@ -1,10 +1,5 @@
-Final Report
+US_Income_Analysis
 ================
-Noam Hazan, Jacob Doh, Nicolas Halabi, Sebastian Naranjo
-
-# Analysis of Income & Other Factors in Census Data
-
-#### Noam Hazan, Jacob Doh, Nicolas Halabi, Sebastian Naranjo
 
 ## Introduction
 
@@ -14,32 +9,17 @@ This can provide us insight into life across American (United States)
 society in the modern age. The questions which we honed in on were the
 following:
 
-- Question 1 (Noam Hazan): How do income factors relate to commute
-  behaviors? What is the relationship between commute time to work
-  (JWMNP) and income?
+- Question 1 : How do income factors relate to commute behaviors? What
+  is the relationship between commute time to work (JWMNP) and income?
 
-- Question 2 (Noam Hazan): Is assistance income (i.e. Social Security,
-  Supplementary Security, Public Assistance) distributed more to
-  employed or unemployed people? How is the proportion of assistance
-  income and total income related to employment status?
+- Question 2 : How does educational attainment relate to income? Do
+  higher education levels tend to earn higher income?
 
-- Question 3 (Jacob Doh): How does educational attainment relate to
-  income? Do higher education levels tend to earn higher income?
+- Question 3 : How does ones employment class relate to their income?
 
-- Question 4 (Jacob Doh): How does income relate to poverty status? Do
-  average income levels differ across poverty groups?
+- Question 4 : How does an individual’s race relate to their income?
 
-- Question 5 (Nicolas Halabi): How does vehicle ownership relate to
-  commuters income?
-
-- Question 6 (Nicolas Halabi): How does ones employment class relate to
-  their income.
-
-- Question 7 (Sebastian Naranjo): How does an individual’s race relate
-  to their income?
-
-- Question 8 (Sebastian Naranjo): How does income vary across every
-  region in America?
+- Question 5 : How does income vary across every region in America?
 
 By investigating how income intersects with logistics, social equity,
 and employment status, these questions provide the empirical evidence
@@ -273,7 +253,7 @@ Variable Usage:
     \[PWGTP\]
   - Adjustment factor for Income & Earnings \[ADJINC\]
 
-### Income & Commute (Noam Hazan)
+### Income & Commute
 
 How do income factors relate to commute behaviors? What is the
 relationship between commute time to work (JWMNP) and income?
@@ -522,189 +502,7 @@ has more opportunity to pick where they live and their proximity to
 work, and therefore might be more able to be in walking distances of
 their workplace, yet we do not see this relationship.
 
-### Assistance Income & Employment Status (Noam Hazan)
-
-``` r
-g2.bin_width <- 1000 # Bin width income
-```
-
-``` r
-  read_csv("exported-graph-construction-data/m2-1.csv") |>
-  ggplot(aes(x=Income, y=PWGTP)) + geom_col(color=NA, fill=ft_cols$yellow) + facet_grid(vars(name), vars(ESR)) + 
-  labs(
-    title="Assistance Income Distribution Across Employment Status",
-    subtitle=str_wrap(str_glue("Distribution of Public Assistance [PAP] and Supplementary Security Income [SSIP] by employment status [ESR] for those who collect any assistance"), 90),
-    x="Assistance Income Amount ($)",
-    y="Person Count",
-    caption=str_glue("Incomes rounded to nearest ${g2.bin_width}, Removed figures with 1000 people or less")
-  ) + 
-  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
-  scale_x_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale()))
-```
-
-    ## Rows: 921 Columns: 4
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (2): ESR, name
-    ## dbl (2): PWGTP, Income
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
-    ## 'Roboto Condensed Light' not found, will use 'sans' instead
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-
-![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
-
-Here we see a comparison of the frequency and quantity of public
-assistance income between employed and unemployed individuals who
-collected any assistance as well as two different systems of public
-assistance income.
-
-Very clearly, unemployed people, or those who are out of the labor
-force, are more likely to be collecting some amount of assistance
-income, likely because that is a major criteria to whether or not they
-are eligible for these programs. Supplementary Security Income \[SSIP\]
-is only available to those over 65 or those dealing with a disability,
-and is mostly a standardized program, which is why we see the vast
-amount of people receiving ~\$10k.
-
-``` r
-  read_csv("exported-graph-construction-data/m2-2.csv") |>
-  ggplot(aes(x=AssistanceIncomeRatio, y=PWGTP)) + geom_col(fill=ft_cols$yellow, color=NA) + facet_wrap(vars(ESR), ncol=1) + 
-  labs(
-    title= "Assistance Income Percentage Across Employment Status",
-    subtitle=str_wrap("Count of People [PWGTP] by Percentage of Income that comes from Government Assistance for those who collect any assistance", 80),
-    x= "Percentage of Income that comes from Government Assistance (%)",
-    y= "Person Count",
-    caption="Unemployed with 100% of income from assistance amounted to ~4.7m people (~27k employed), removed from plot for visibility"
-  ) +
-  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
-  scale_x_continuous(labels = scales::label_percent())
-```
-
-    ## Rows: 192 Columns: 3
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (1): ESR
-    ## dbl (2): AssistanceIncomeRatio, PWGTP
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-
-![](README_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
-
-Plotted here is a similar graph as previous, this time looking into
-assistance income as a whole (a combination of Public Assistance Income
-\[PAP\] and Supplementary Security Income \[SSIP\]) and its proportion
-of total income.
-
-For civilians we see as expected. Since they are employed, they should
-have an income stream, and therefore assistance is only a limited
-portion of their total income. We see a decreasing slope as we go down
-and a bump up at 50% as well as 100% (not charted) which is consistent.
-
-For unemployed, we see a major jump at 100% (Nearly 5 million people,
-not charted), and a relatively small increase at 50% (~185k). The trends
-here are not obvious and likely a result of multiple influencing factors
-(i.e. unemployment type and reason, length of unemployment, changing
-policy and eligibility, etc.).
-
-### Income & Education Level (Jacob Doh)
+### Income & Education Level
 
 How does educational attainment relate to income? Do higher education
 levels tend to earn higher income?
@@ -767,175 +565,27 @@ read_csv("exported-graph-construction-data/m3-1.csv") |>
     ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
     ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
 
-![](README_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 The above result (box plot) shows adjusted total income (PINCP_adjusted)
 by level of educational attainment (SCHL). Each box shows the income
 distribution for a particular level of education including median,
 spread and possible outliers. We can see that there is a clear positive
-relationship between education level and income. Specifically, higher
-education attainment (master’s and bachelor’s) is generally correlated
-with higher median income compared to lower education attainment (high
-school and GED). Also, the median income rises with education level,
-which suggests that higher education not only earn more on average, but
-also experience greater variability (due to wide range of opportunities
-and occupations). But median income is lower for lower-education groups,
-and they are more concentrated (income distributions appear lower and a
-bit narrower). Overall the results show a clear positive pattern between
-income and educational attainment. This result answers the research
-question directly. Income does vary by level of education, and higher
-levels of education are associated with higher income.
+relationship between education level and income.
 
-### Income & Poverty Ratio (Jacob Doh)
+Specifically, higher education attainment (master’s and bachelor’s) is
+generally correlated with higher median income compared to lower
+education attainment (high school and GED). Also, the median income
+rises with education level, which suggests that higher education not
+only earn more on average, but also experience greater variability (due
+to wide range of opportunities and occupations). But median income is
+lower for lower-education groups, and they are more concentrated (income
+distributions appear lower and a bit narrower).
 
-How does income relate to poverty status? Do average income levels
-differ across poverty groups?
-
-In this part, we analyze how total relates to poverty status. The
-income-to-poverty ratio is represented as POVPIP, and total income is
-represented as PINCP (Income is adjusted using ADJINC).
-
-``` r
-g3.bin_width <- 1000 # income bin width
-```
-
-``` r
-read_csv("exported-graph-construction-data/m4-1.csv") |>
-  mutate(POVPIP_grouped = factor(POVPIP_grouped,
-  levels = c(
-  "Extreme Poverty (<50)",
-  "Below Poverty Line (50-99)",
-  "Low Income (100-199)",
-  "Middle Income (200-399)",
-  "High Income (400+)"))) |>
-
-  # creating plot
-  ggplot(aes(x = POVPIP_grouped, y = avg_income)) +
-  geom_col(fill = ft_cols$yellow, color=NA) +
-  coord_flip() +
-  labs(
-    title = "Average Income Across Poverty Levels",
-    x = "Poverty Level (POVPIP)",
-    y = "Adjusted Income") +
-  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale()))
-```
-
-    ## Rows: 5 Columns: 2
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (1): POVPIP_grouped
-    ## dbl (1): avg_income
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-![](README_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
-
-The result above shows the relation between poverty status (POVPIP) and
-average adjusted income. As can be seen from the bar chart, there is a
-clear increasing trend (as POVPIP increases, average income increases).
-The lowest average income is for the extreme poverty category as well.
-We can see that income gradually increases as we go from the
-below-poverty-line to the low-income group to the middle-income group
-(individuals who are higher above the poverty threshold tend to earn
-more on average). The average for the high-income group is much higher
-than the average for all other groups. One thing to note is that this
-output is based on average income for each group, so it summarizes the
-general trend rather than the full distribution of variation. The
-overall pattern is very clear and consistent. This result answers our
-research question by showing that income levels differ across poverty
-groups, and higher POVPIP status is associated with higher average
-adjusted income.
-
-### Income & Vehicle Ownership
-
-``` r
-g5.bin_width <- 1000 # income bin width
-```
-
-``` r
-read_csv("exported-graph-construction-data/m5-1.csv") |>
-  ggplot(aes(x = reorder(DRIVESP, avg_income), y = avg_income)) +
-  geom_col(fill = ft_cols$yellow, color=NA) +
-  coord_flip() +
-  labs(
-    title = "Average Income by Number of Vehicles Available",
-    subtitle = str_wrap(
-      "Weighted average Total Income by vehicles available for employed civilians",
-      80),
-    x = "Vehicles Available",
-    y = "Average Total Income Adjusted"
-  ) +
-  scale_y_continuous(labels = scales::label_number(scale_cut = scales::cut_short_scale()))
-```
-
-    ## Rows: 6 Columns: 2
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (1): DRIVESP
-    ## dbl (1): avg_income
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-
-![](README_files/figure-gfm/unnamed-chunk-30-1.png)<!-- -->
-
-``` r
-read_csv("exported-graph-construction-data/m5-2.csv") |>
-  ggplot(aes(
-    x = has_vehicle,
-    ymin = ymin, ymax = ymax,
-    lower = lower, middle = middle, upper = upper
-  )) +
-  geom_boxplot(stat = "identity", color = ft_cols$white, fill = "#252a32") +
-  labs(
-    title   = "Commute Time Distribution by Vehicle Access",
-    subtitle = str_wrap(
-      "Travel Time to Work by whether the respondent has access to a vehicle",
-      80),
-    x = "Vehicle Access",
-    y = "Travel Time to Work in Minutes"
-  ) # This graph doesn't really pertain to anything we are doing, nor does it make sense.
-```
-
-    ## Rows: 1 Columns: 6
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (1): has_vehicle
-    ## dbl (5): ymin, lower, middle, upper, ymax
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-
-![](README_files/figure-gfm/unnamed-chunk-31-1.png)<!-- -->
+Overall the results show a clear positive pattern between income and
+educational attainment. This result answers the research question
+directly. Income does vary by level of education, and higher levels of
+education are associated with higher income.
 
 ### Income & Class of Worker
 
@@ -986,7 +636,7 @@ read_csv("exported-graph-construction-data/m6-1.csv") |>
     ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
     ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
 
-![](README_files/figure-gfm/unnamed-chunk-35-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 ``` r
 read_csv("exported-graph-construction-data/m6-2.csv") |>
@@ -1028,9 +678,36 @@ read_csv("exported-graph-construction-data/m6-2.csv") |>
     ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
     ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
 
-![](README_files/figure-gfm/unnamed-chunk-36-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
-### Income & Race (Sebastian Naranjo)
+In the box plot, the income of individuals is listed out based on their
+class of work. There is also a bar chart to indicate the percentage of
+the workforce in each class of work. In government work we have the
+highest median salary at about 65 thousand with a relatively tight and
+strong IQR box indicating few outliers. Although it is the highest
+paying median wise, government workers only make up close to 15% of the
+workforce.
+
+This means that these comfortable government jobs that pay well and
+provide good benefits are highly competitive and there are not a lot of
+jobs offered as they require strong skills. Then there is the self
+employed group with a median of about 50 thousand. The IQR box is
+relatively big so there are some outliers that impact this box. Self
+employed workers make up the smallest group of the work force at about
+9%. This makes sense as many are not willing to take on the comfort or
+financial risk of running their own business. Their incomes make sense
+as some individuals will be successful and make lots of money while
+others won’t be very successful, hence why there are many outliers that
+skew the IQR box. Lastly, we have the private sector, the median salary
+is also about 50 thousand with a relatively strong IQR box indicating
+few outliers.
+
+The private sector makes up about about 75% of the work force. The
+private sector takes up a significant part of the work force, most make
+a solid living, but there are some that make a significant amount and
+bring the IQR box up.
+
+### Income & Race
 
 ``` r
 g7.bin_width <- 1000 # income bin width
@@ -1075,6 +752,35 @@ ggplot(aes(x = reorder(RAC1P, weighted_median), y = weighted_median)) +
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family
+    ## 'Roboto Condensed Light' not found, will use 'sans' instead
+
     ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
     ## family 'Roboto Condensed Light' not found, will use 'sans' instead
     ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
@@ -1101,7 +807,7 @@ ggplot(aes(x = reorder(RAC1P, weighted_median), y = weighted_median)) +
     ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
     ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
 
-![](README_files/figure-gfm/unnamed-chunk-40-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
 ``` r
 read_csv("exported-graph-construction-data/m7-2.csv") |>
@@ -1137,7 +843,7 @@ read_csv("exported-graph-construction-data/m7-2.csv") |>
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
-![](README_files/figure-gfm/unnamed-chunk-41-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 Overall, while median income varies across racial groups—most notably
 with White individuals exhibiting the highest median adjusted income—the
@@ -1146,9 +852,7 @@ distributions. This suggests that race is associated with income
 differences at the population level, but it is not a deterministic
 predictor of individual economic outcomes.
 
-Query
-
-### Income & Region (Sebastian Naranjo)
+### Income & Region
 
 ``` r
 read_csv("exported-graph-construction-data/m8-1.csv") |>
@@ -1198,7 +902,7 @@ ggplot(aes(x = REGION, y = weighted_mean)) +
     ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
     ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
 
-![](README_files/figure-gfm/unnamed-chunk-44-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 The analysis indicates that the Northeast has the highest weighted
 average income, followed by the West, Midwest, and South. While regional
@@ -1221,73 +925,3 @@ cannot be fully analyzed from only one factor. Therefore, future
 analysis could be improved by using more detailed statistical models or
 by comparing changes over time to better understand how these
 relationships develop.
-
-## Supplementary Exhibits
-
-### Exhibit A
-
-``` r
-  read_csv("exported-graph-construction-data/exhibit-a.csv") |>
-  ggplot(aes(x=SEMP_Ratio, y=prop, fill=JWTRNS )) + geom_col(position="dodge") + # facet_wrap(vars(JWTRNS)) +
-  labs(
-    x="% Self Employed Income Gain (Loss) contribution to Total Income Lost", 
-    y="Proportion of Occurances", 
-    title= str_wrap("Exhibit A: Total Income Loss Occurances & Self Employed Income", 70),
-    subtitle=str_wrap("Analysis of Total Income [PINCP] Loss Occurances & the Proportional Self Employed Income [SEMP] Impact",70),
-    caption="Proportions Rounded to the nearest 100%"
-     ) + scale_fill_ft()
-```
-
-    ## Rows: 10 Columns: 4
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (1): JWTRNS
-    ## dbl (3): SEMP_Ratio, n, prop
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family 'Roboto Condensed Light' not found, will use 'sans' instead
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family 'Roboto Condensed Light' not found, will use 'sans' instead
-
-![](README_files/figure-gfm/unnamed-chunk-46-1.png)<!-- -->
-
-This graph shows only occurrences of total income being a loss, and self
-employed incomes impact on that resulting negative total as a proportion
-of itself. Here we see about 82% of people who work from home who had
-negative total incomes had self employed income contributing to a
-rounded 100% of that loss. So for example, someone who lost \$100,000 in
-this category attributes that 100% of that loss is due to self
-employment income. We see values greater then 100% due to the counter
-balancing effect of other incomes.
