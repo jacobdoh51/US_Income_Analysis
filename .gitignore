@@ -1,0 +1,16 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.RDataTmp
+.RDataTmp1
+
+main.duckdb
+*.duckdb
+
+/data
+
+*.zip
+csv_pus.zip
+dict.csv
+
