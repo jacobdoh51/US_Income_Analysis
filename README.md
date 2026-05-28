@@ -1,4 +1,4 @@
-US_Income_Analysis
+US Income Analysis
 ================
 
 ## Introduction
@@ -26,6 +26,8 @@ and employment status, these questions provide the empirical evidence
 needed to fulfill our goal of identifying the core factors that shape
 economic hierarchy and define the modern American experience.
 
+------------------------------------------------------------------------
+
 ## Data
 
 This project uses data from the US Census Bureau’s [American Community
@@ -40,6 +42,8 @@ of the fact that it is the largest and most reliable sample size, and
 because for our analytic purposes precision is more important than
 currency.
 
+------------------------------------------------------------------------
+
 ### Data Characteristics
 
 The dataset is wide and unfocused, holding over 500 unique fields which
@@ -52,6 +56,8 @@ restricted to areas of +100,000 or more people.
 The dataset is also very detailed in its length, with ~16 million
 records each representing at least one unique person, and a sample model
 weight which can be used to represent over ~331 million Americans.
+
+------------------------------------------------------------------------
 
 ### Data Access Methods
 
@@ -71,6 +77,8 @@ alt="Simplified Dataflow Model" />
 <figcaption aria-hidden="true">Simplified Dataflow Model</figcaption>
 </figure>
 
+------------------------------------------------------------------------
+
 #### FTP
 
 The [FTP (File Transfer
@@ -82,6 +90,8 @@ all the data at once which can take hours in non-ideal conditions.
 Despite the conditions, this provides the fullest picture which helps
 when beginning analysis. For that reason, we have opted to use this as
 our main method of collecting the data and putting it into storage.
+
+------------------------------------------------------------------------
 
 #### API
 
@@ -97,6 +107,8 @@ this isn’t our primary query method, we decided that we would not
 benefit from a custom solution, and as such we will use either
 `tidycensus` or `censusapi` packages in those cases.
 
+------------------------------------------------------------------------
+
 #### MDAT
 
 We are also able to use the MDAT or Micro-Data Access Tool. This
@@ -105,6 +117,8 @@ speed to access data to a level where we feel it is unusable, at least
 for our usage. This tool is useful for easily reading about the columns
 and their related values, but loses any other value in areas further
 then that.
+
+------------------------------------------------------------------------
 
 ### Securing & Cleaning Process(es)
 
@@ -169,6 +183,8 @@ dbDisconnect(con, shutdown = TRUE)
 # Remember to open the connection again when interacting with DuckDB
 ```
 
+------------------------------------------------------------------------
+
 #### Translation Processes
 
 To convert the data dictionary to a usable form in R we need to break
@@ -222,6 +238,8 @@ translate <- function(target_df) {
 rm(d1) # Remove data that was used for processing, but is not useful anymore in order to free up more memory.
 ```
 
+------------------------------------------------------------------------
+
 ## Analysis
 
 Variable Usage:
@@ -252,6 +270,8 @@ Variable Usage:
   - Person Weight (i.e. the amount of people a record represents)
     \[PWGTP\]
   - Adjustment factor for Income & Earnings \[ADJINC\]
+
+------------------------------------------------------------------------
 
 ### Income & Commute
 
@@ -502,6 +522,8 @@ has more opportunity to pick where they live and their proximity to
 work, and therefore might be more able to be in walking distances of
 their workplace, yet we do not see this relationship.
 
+------------------------------------------------------------------------
+
 ### Income & Education Level
 
 How does educational attainment relate to income? Do higher education
@@ -586,6 +608,8 @@ Overall the results show a clear positive pattern between income and
 educational attainment. This result answers the research question
 directly. Income does vary by level of education, and higher levels of
 education are associated with higher income.
+
+------------------------------------------------------------------------
 
 ### Income & Class of Worker
 
@@ -706,6 +730,8 @@ The private sector makes up about about 75% of the work force. The
 private sector takes up a significant part of the work force, most make
 a solid living, but there are some that make a significant amount and
 bring the IQR box up.
+
+------------------------------------------------------------------------
 
 ### Income & Race
 
@@ -852,6 +878,8 @@ distributions. This suggests that race is associated with income
 differences at the population level, but it is not a deterministic
 predictor of individual economic outcomes.
 
+------------------------------------------------------------------------
+
 ### Income & Region
 
 ``` r
@@ -909,6 +937,8 @@ average income, followed by the West, Midwest, and South. While regional
 differences are statistically meaningful, they are relatively modest
 compared to within-region variation, suggesting that geographic location
 influences income but does not dominate individual economic outcomes.
+
+------------------------------------------------------------------------
 
 ## Conclusion
 
