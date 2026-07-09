@@ -15,9 +15,9 @@ The project aims to identify factors that influence income, and identify the way
 
 -   Question 2 : How does educational attainment relate to income? Do higher education levels tend to earn higher income?
 
--   Question 3 : How does ones employment class relate to their income?
+-   Question 3 : How does ones employment class relate to their income? 
 
--   Question 4 : How does an individual's race relate to their income?
+-   Question 4 : How does an individual's race relate to their income? Which race presents the highest income? 
 
 -   Question 5 : How does income vary across every region in America?
 
