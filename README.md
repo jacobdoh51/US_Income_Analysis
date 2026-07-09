@@ -948,7 +948,7 @@ employment, and others). By analyzing these different questions, we are
 able to analyze that the income is not explained by one single variable.
 Instead, income is shaped by a different combination of education,
 employment, transportation, location, and demographic factors. In
-conclusion, our analysis shows that income differences are strongly
+conclusion, our analysis portrays that income differences are strongly
 related to education poverty status, employment, transportation, race,
 and geography. The project helps understand that income is complex and
 cannot be fully analyzed from only one factor. Therefore, future
